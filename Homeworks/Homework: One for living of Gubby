@@ -1,1 +1,58 @@
+import random
 
+class Gubby:
+    def __init__(self, name):
+        self.name = name
+        self.gladness = 50
+        self.progress = 0
+        self.alive = True
+
+    def to_hunt(self):
+        print("Gubby wants to kill someone......")
+        self.gladness -=5
+        self.progress += 0.1
+
+    def to_sleep(self):
+        print("Gubby is tried, he is going to sleep and see some dreams")
+        self.gladness += 3
+
+    def to_eat(self):
+         print("Gubby is hungry, he is going to eat somthing")
+         self.progress -= 0.12
+         self.gladness += 5
+
+    def is_alive(self):
+        if self.progress <- 0.5:
+            print(f"{self.name} is hungry, he needs some food.")
+            self.alive = False
+        elif self.gladness <= 0:
+            print(f"{self.name} is tired, he needs some rest.")
+            self.alive = False
+        elif self.progress > 5:
+            print(f"{self.name} died :(")
+            self.alive = False
+
+    def end_of_day(self):
+        print(f"Gladness = {self.gladness}")
+        print(f"Progress = {self.progress}")
+
+    def live(self, period):
+        period = " Day " + str(period) + " of " + self.name + " life "
+        print(f"Day : {period}")
+        live_cube = random.randint(1,3)
+        if live_cube == 1:
+            self.to_eat()
+        elif live_cube == 2:
+            self.to_sleep()
+        elif live_cube == 3:
+            self.to_hunt()
+
+        self.end_of_day()
+        self.is_alive()
+
+Gubby = Gubby(name="Gubby")
+
+for day in range(365):
+    if not Gubby.alive:
+        break
+    Gubby.live(day)
