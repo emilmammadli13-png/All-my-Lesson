@@ -1,0 +1,70 @@
+import random
+import time
+
+class Car:
+    def __init__(self, brand, fuel = 100):
+        self.brand = brand
+        self.fuel = fuel
+
+    def drive(self, distance):
+        fuel_needed = distance * 2
+        if self.fuel >= fuel_needed:
+            self.fuel -= fuel_needed
+            print(f"You just drove {distance} miles. Now you have left with: {self.fuel}l fuel")
+            return True
+        else:
+            print("Mate you dont have enough fuel to go, go refuel first")
+            return False
+
+    def refuel(self):
+        self.fuel = 100
+        print("You have refueled to maximum amount")
+
+class Passenger:
+    def __init__(self):
+        self.distance = random.randint(5, 10)
+        self.fare = self.distance * random.randint(5, 10)
+
+    def info(self):
+        print(f"You have a new passenger which wants to go {self.distance} miles - fare: ${self.fare}")
+
+class Human:
+    def __init__(self, name, car):
+        self.name = name
+        self.car = car
+        self.money = 0
+
+    def take_passenger(self):
+        passenger = Passenger()
+        passenger.info()
+        accept = input("You want to accept this passenger? (yes/no): ").lower()
+        if accept == "yes":
+            success = self.car.drive(passenger.distance)
+            if success:
+                self.money += passenger.fare
+                print(f"You just earned ${passenger.fare} money! Now you have total of ${self.money}")
+            else:
+                print("The passenger ignored you :(")
+
+    def play(self):
+        print(f"\nWelcome {self.name}. You are driving a taxi for earn money with your {self.car.brand}.")
+        print("Try to earn some money for yourself\n")
+        time.sleep(1)
+
+        while True:
+            action = input("\nChoose an action (drive/refuel/status/exit): ").lower()
+            if action == "drive":
+                self.take_passenger()
+            elif action == "refuel":
+                self.car.refuel()
+            elif action == "status":
+                print(f"Your car's fuel is: {self.car.fuel}l | Total amount of money you made is: ${self.money}")
+            elif action == "exit":
+                print(f"\nGame is over. You have earned total of ${self.money}.")
+                break
+            else:
+                print("I dont understand what you are trying to do...")
+
+car = Car("Plane")
+player = Human("Emil", car)
+player.play()
