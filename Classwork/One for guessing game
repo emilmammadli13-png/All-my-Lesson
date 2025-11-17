@@ -1,0 +1,31 @@
+import time
+import test
+
+def play_round():
+    animal = test.random_animal()
+    sound = test.get_sound(animal)
+
+    print("Which animal is this?")
+    time.sleep(0.0)
+    print(f"\nSound: {sound}\n")
+
+    guess = input("You Answer: ").strip()
+    if guess.lower() == str(test.get_name(animal)).lower():
+        print("True")
+        return True
+    else:
+        print(f"No! The right answer is {test.get_name(animal)}")
+        return False
+
+def main():
+    print("Hello! Welcome!")
+    score = 0
+    rounds = 3
+    for i in range(rounds):
+        print(f"\nRounds {i+1}/{rounds}\n")
+        if play_round():
+            score+=1
+    print(f"The game is ended! Your score: {score}/{rounds}")
+
+if __name__ == "__main__":
+    main()
