@@ -1,0 +1,69 @@
+// MAIN!!!
+
+import operations
+
+def play_round():
+    print("Enter operation like: 5 + 3")
+    formula = input().strip()
+
+    try:
+        a, op, b = formula.split()
+        a = float(a)
+        b = float(b)
+    except:
+        print("Uhm... The way you are trying this is wrong, try something like this -> 4 * 2")
+        return False
+
+    guess = input("Your answer: ").strip()
+
+    if op == '+':
+        correct = operations.operation_add(a, b)
+    elif op == '-':
+        correct = operations.operation_reduce(a, b)
+    elif op == '*':
+        correct = operations.operation_times(a, b)
+    elif op == '/':
+        correct = operations.operation_divide(a, b)
+    else:
+        print("What are you asking for again?")
+        return False
+
+    correct = round(correct, 1)
+
+    if float(guess) == correct:
+        print("Nice! You got it ALLLLL right")
+        return True
+    else:
+        print(f"Aw man :( You are wrong(sadly). This was the right answer -> {correct}")
+        return False
+
+def main():
+    print("Welcome, welcome! Try my calculator. Feel free :)")
+    score = 0
+    rounds = 10
+
+    for i in range(rounds):
+        print(f"\nRound {i+1}/{rounds}")
+        if play_round():
+            score += 1
+
+    print(f"Game finished! Your score: {score}/{rounds}")
+
+if __name__ == "__main__":
+    main()
+
+//OPERATIONS
+
+operators = ['+', '-', '*', '/']
+
+def operation_add(a, b):
+    return a+b
+
+def operation_reduce(a, b):
+    return a-b
+
+def operation_times(a, b):
+    return a*b
+
+def operation_divide(a, b):
+    return a/b
