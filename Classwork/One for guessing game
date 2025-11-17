@@ -1,3 +1,5 @@
+// MAIN PART!!!!!
+
 import time
 import test
 
@@ -29,3 +31,24 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+// ANIMALS PART
+
+import random
+
+ANIMALS = [
+    {"name" : "Cat", "sound" : "Meow"},
+    {"name" : "Cow", "sound" : "Mo"},
+    {"name" : "Dog", "sound" : "Haw-Haw"},
+    {"name" : "Bird", "sound" : "chich"}
+]
+
+def random_animal():
+    return random.choice(ANIMALS)
+
+def get_sound(animal):
+    return animal["sound"]
+
+def get_name(animal):
+    return animal["name"]
