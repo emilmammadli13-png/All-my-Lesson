@@ -1,0 +1,40 @@
+questions = {
+    "What is the capital of France?": "paris",
+    "What gas do humans need to breathe?": "oxygen",
+    "What planet is known as the Red Planet?": "mars",
+    "What animal is known as the king of the jungle?": "lion",
+    "How many days are in a leap year?": "366",
+    "How many countries are there in World?": "206",
+    "Which state is the largest one in USA?" : "Alaska"
+}
+
+def play_game():
+    print("=== WHO WANTS TO BE A MILLIONAIRE ===\n")
+
+    for q, ans in questions.items():
+        print("Question:")
+        print(q)
+
+        while True:
+            try:
+                user = input("Your answer: ").strip().lower()
+
+                if user == "":
+                    print("Are you going to answer?")
+                    continue
+
+                if user == ans:
+                    print("BULLSEYE!!! YOU GOT THE RIGHT ANSWER!!!\n")
+                    break
+                else:
+                    print("Sadly the answer you wrote was wrong, the right one is: ", ans)
+                    print("Game over!")
+                    return
+
+            except Exception as e:
+                print("Uhm... You got some error here buddy:", e)
+                print("Try again :D\n")
+
+    print("YOU WON THE GAME!!!")
+
+play_game()
