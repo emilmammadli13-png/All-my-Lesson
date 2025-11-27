@@ -1,0 +1,29 @@
+// GENERATOR!!!
+def generator(s):
+    for i in s:
+        yield i
+
+for i in generator("Salam!"):
+    print(i)
+
+//ITERATOR!!!
+class StringIterator:
+    def __init__(self, s):
+        self.s = s
+        self.i = 0
+
+    def __iter__(self): 
+        return self
+
+    def __next__(self):
+        if self.i >= len(self.s):
+            raise StopIteration
+        ch = self.s[self.i]
+        self.i += 1
+        return ch
+
+yazi = "Salam!"
+it=StringIterator(yazi)
+
+for i in it:
+    print(i)  
