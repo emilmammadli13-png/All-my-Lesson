@@ -1,0 +1,78 @@
+import logging
+
+logging.basicConfig(
+    filename="market.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s"
+)
+
+def log_print(msg):
+    print(msg)
+    logging.info(msg)
+
+class Products:
+    def __init__(self, items):
+        self.items = items
+        print("You have those items:")
+        for i in self.items:
+            print(i)
+        print()
+
+class Customers:
+    def __init__(self, people):
+        self.people = people
+        print("Those are the customers:")
+        for p in self.people:
+            print(p)
+        print()
+
+class Discounts(Products):
+    def __init__(self, items, discount):
+        super().__init__(items)
+        self.discount = discount
+        print("Those are the discounts:")
+        for d in self.discount:
+            print(d)
+        print()
+
+class Orders(Customers):
+    def __init__(self, people, orders):
+        super().__init__(people)
+        self.orders = orders
+        print("Those are the orders:")
+        for o in self.orders:
+            print(o)
+        print()
+
+class Sell(Discounts, Orders):
+    def __init__(self, items, people, discount, orders):
+        Discounts.__init__(self, items, discount)
+        Orders.__init__(self, people, orders)
+        print("\nMarketManager ready! Here’s the data you entered:")
+        print(f"Items: {self.items}")
+        print(f"Customers: {self.people}")
+        print(f"Discounts: {self.discount}")
+        print(f"Orders: {self.orders}")
+
+
+print("Hi! Welcome to our market simulator.\n")
+print("To start the game, you must input the following things in these formats:\n")
+
+print("1) Items: Enter names separated by spaces. Example:")
+print("pen banana\n")
+
+print("2) Customers: Enter names separated by spaces. Example:")
+print("Emil Ughur\n")
+
+print("3) Discounts: Enter discount names separated by spaces. Example:")
+print("pen banana\n")
+
+print("4) Orders: Enter orders separated by spaces. Example:")
+print("Emil,pen Ughur,BANANA\n")
+
+items_input = input("Enter items: ").split()
+people_input = input("Enter customers: ").split()
+discount_input = input("Enter discounts: ").split()
+orders_input = input("Enter orders: ").split()
+
+market = Sell(items_input, people_input, discount_input, orders_input)
