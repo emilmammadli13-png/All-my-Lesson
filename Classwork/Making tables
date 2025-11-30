@@ -1,0 +1,15 @@
+import sqlite3
+
+connection = sqlite3.connect("itstep_DB.sl3", timeout = 5)
+cur = connection.cursor()
+# cur.execute("CREATE TABLE first_table (name TEXT);")
+# cur.execute("INSERT INTO first_table (name) VALUES ('Amin');")
+cur.execute("SELECT rowid, name FROM first_table;")
+# cur.execute("SELECT rowid, name FROM first_table WHERE rowid = 2;")
+# cur.execute("DELETE FROM first_table WHERE rowid = 1")
+# cur.execute("UPDATE first_table SET name = 'Michael Jackson' WHERE rowid = 2;")
+# cur.execute("DROP TABLE first_table;")
+connection.commit()
+res = cur.fetchall()
+print(res)
+connection.close()
