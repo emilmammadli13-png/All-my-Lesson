@@ -1,0 +1,39 @@
+import requests
+
+# response = requests.get("https://httpbin.org/get")
+# print(response.content)
+
+# response = requests.post("https://httpbin.org/post", data = "Test data", headers = {"h1" : "Test Title"})
+# print(response.content)
+
+# def get_coin_price(coin):
+#     coin = coin.lower().replace(" ","-")
+#     url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug={coin}&start=1&limit=1"
+#
+#     headers = {
+#         "User-Agent" : "Mozilla/5.0",
+#         "Accept" : "application/json"
+#     }
+#
+#     response = requests.get(url, headers = headers)
+#
+#     if response.status_code != 200:
+#         return "False coin name or API is blocked"
+#     data = response.json()
+#
+#     try:
+#         price = data["data"]["marketPairs"][0]["price"]
+#         return price
+#     except:
+#         return "Cannot find coin"
+#
+# coin = input("Enter the coin name: ")
+# result = get_coin_price(coin)
+# print("\nResult: ", result)
+
+data = {
+    "username" : "Emil",
+    "password" : "1234"
+}
+response = requests.post("https://httpbin.org/post", data = data)
+print(response.text)
