@@ -1,0 +1,19 @@
+import sqlite3
+from datetime import datetime
+
+connection = sqlite3.connect("Temperature.sl3")
+cur = connection.cursor()
+
+cur.execute("CREATE TABLE IF NOT EXISTS weather(datetime TEXT, temperature REAL)")
+connection.commit()
+
+time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+temperature = 23.5
+cur.execute("INSERT INTO weather(datetime, temperature) VALUES (?, ?)", (time, temperature))
+connection.commit()
+
+cur.execute("SELECT * FROM weather")
+res = cur.fetchall()
+print(res)
+
+connection.close()
