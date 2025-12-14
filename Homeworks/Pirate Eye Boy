@@ -1,0 +1,18 @@
+import cv2
+from PIL import Image
+
+image_path = "boy.jpg"
+boy_face_cascade = cv2.CascadeClassifier("haarcascade_righteye_2splits.xml")
+image = cv2.imread(image_path)
+boy_face = boy_face_cascade.detectMultiScale(image)
+boy = Image.open(image_path)
+pirate = Image.open("pirate.jpg")
+boy = boy.convert("RGBA")
+pirate = pirate.convert("RGBA")
+for(x, y, w, h) in boy_face:
+    pirate = pirate.resize((w, int(h / 2)))
+    boy.paste(pirate, (x, int(y + h / 4)), pirate)
+    boy.save("boy_with_pirate_glasses.png")
+    boy_with_pirate_glasses = cv2.imread("boy_with_pirate_glasses.png")
+    cv2.imshow("boy_with_pirate_glasses", boy_with_pirate_glasses)
+    cv2.waitKey()
