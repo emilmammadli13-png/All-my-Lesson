@@ -1,0 +1,28 @@
+import requests
+
+def get_coin_price(coin):
+    coin = coin.lower().strip().replace(" ", "-")
+
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={coin}&vs_currencies=usd"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code != 200:
+        return "API error"
+
+    data = response.json()
+
+    try:
+        return data[coin]["usd"]
+    except KeyError:
+        return "Cannot find coin"
+
+coin = input("Enter the coin name: ")
+result = get_coin_price(coin)
+
+print("\nResult:", result)
